@@ -30,7 +30,7 @@ class Product(models.Model):
     features = models.TextField(blank=True, null=True)
     reviews = models.ManyToManyField(
         'Review', blank=True, related_name='products')
-    images_urls = models.JSONField(null=True)
+    images_urls = models.JSONField(default=list)
 
     def save(self, *args, **kwargs):
         if not self.slug:
