@@ -45,22 +45,18 @@ class CustomLoginView(LoginView):
         return response
 
 
-def register(request):
+def register(request):  # sourcery skip: extract-method
     if request.user.is_authenticated:
         return redirect('dashboard')
     if request.method == 'POST':
-        return _register_actions(request)
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        user = User.objects.create_user(
+            username=username, email=email, password=password)
+        login(request, user)
+        return redirect('home')
     return render(request, 'stores/register.html')
-
-
-def _register_actions(request):
-    username = request.POST['username']
-    email = request.POST['email']
-    password = request.POST['password']
-    user = User.objects.create_user(
-        username=username, email=email, password=password)
-    login(request, user)
-    return redirect('home')
 
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):

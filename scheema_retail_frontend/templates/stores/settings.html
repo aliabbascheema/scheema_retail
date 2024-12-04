@@ -1,0 +1,143 @@
+{% extends '../base.html' %}
+{% block title %} Sherry Retail | Home {% endblock %}
+{% block content %}
+    {% comment %} <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label for="first_name">First Name:</label>
+            <input
+            type="text"
+            id="first_name"
+            name="first_name"
+            value="{{ request.user.first_name }}"
+            />
+        </div>
+        <div>
+            <label for="last_name">Last Name:</label>
+            <input
+            type="text"
+            id="last_name"
+            name="last_name"
+            value="{{ request.user.last_name }}"
+            />
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input
+            type="email"
+            id="email"
+            name="email"
+            value="{{ request.user.email }}"
+            />
+        </div>
+        <div>
+            <label for="job_title">Job Title:</label>
+            <input
+            type="text"
+            id="job_title"
+            name="job_title"
+            value="{{ profile.job_title }}"
+            />
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description">
+        {{ profile.description }}</textarea
+            >
+        </div>
+        <div>
+            <label for="linkedin">LinkedIn:</label>
+            <input
+            type="url"
+            id="linkedin"
+            name="linkedin"
+            value="{{ profile.social_links.linkedin }}"
+            />
+        </div>
+        <div>
+            <label for="twitter">Twitter:</label>
+            <input
+            type="url"
+            id="twitter"
+            name="twitter"
+            value="{{ profile.social_links.twitter }}"
+            />
+        </div>
+        <div>
+            <label for="github">GitHub:</label>
+            <input
+            type="url"
+            id="github"
+            name="github"
+            value="{{ profile.social_links.github }}"
+            />
+        </div>
+        <div>
+            <label for="profile_image">Profile Image:</label>
+            <input type="file" id="profile_image" name="profile_image" />
+            {% if profile.profile_image %}
+            <img
+            src="{{ profile.profile_image.url }}"
+            alt="Profile Image"
+            style="width: 150px; height: auto"
+            />
+            {% endif %}
+        </div>
+        <button type="submit">Update Profile</button>
+        </form>
+        {% if messages %}
+        <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %} {% endcomment %}
+    <div class="bg-white border border-4 rounded-lg shadow relative m-10 w-full">
+
+        <div class="flex items-start justify-between p-5 border-b rounded-t">
+            <h3 class="text-xl font-semibold">
+                Edit profile
+            </h3>
+        </div>
+    
+        <div class="p-6 space-y-6">
+            <form action="#">
+                <div class="grid grid-cols-6 gap-6">
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="profile-name" class="text-sm font-medium text-gray-900 block mb-2">First Name</label>
+                        <input type="text" name="profile-name" id="profile-name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="John" required="" value="{{ request.user.first_name }}">
+                    </div>
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="user-name" class="text-sm font-medium text-gray-900 block mb-2">User Name</label>
+                        <input type="text" name="user-name" id="user-name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Doe" required="" value="{{ request.user.username }}">
+                    </div>
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="category" class="text-sm font-medium text-gray-900 block mb-2">Email</label>
+                        <input type="text" name="category" id="category" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Doe" required="" value="{{ request.user.email }}">
+                    </div>
+                    <div class="col-span-full">
+                        <label for="profile-details" class="text-sm font-medium text-gray-900 block mb-2">profile Details</label>
+                        <input type="text" name="category" id="category" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Doe" required="" value="{{ request.user.email }}">
+                    </div>
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="brand" class="text-sm font-medium text-gray-900 block mb-2">Brand</label>
+                        <input type="text" name="brand" id="brand" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Apple" required="" value="{{ request.user.first_name }}">
+                    </div>
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="price" class="text-sm font-medium text-gray-900 block mb-2">Price</label>
+                        <input type="number" name="price" id="price" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="$2300" required="" value="{{ request.user.first_name }}">
+                    </div>
+                    <div class="col-span-full">
+                        <label for="profile-details" class="text-sm font-medium text-gray-900 block mb-2">Bio</label>
+                        <textarea id="profile-details" rows="6" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" placeholder="Details"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+    
+        <div class="p-6 border-t border-gray-200 rounded-b">
+            <button class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="submit">Save all</button>
+        </div>
+    
+    </div>
+{% endblock %}
