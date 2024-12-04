@@ -20,9 +20,9 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY theme/static_src/package.json ./theme/static_src/
+COPY scheema_retail_frontend/static_src/package.json ./scheema_retail_frontend/static_src/
 
-WORKDIR /app/theme/static_src
+WORKDIR /app/scheema_retail_frontend/static_src
 RUN npm install -g yarn && yarn install
 
 
