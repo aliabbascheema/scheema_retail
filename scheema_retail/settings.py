@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'scheema_retail_store',
+    'tailwind',
+    'scheema_retail_frontend',
 ]
 
 MIDDLEWARE = [
@@ -43,7 +45,8 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'scheema_retail.urls'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/dashboard/'
-LOGOUT_REDIRECT_URL = '/login/'
+LOGOUT_REDIRECT_URL = '/'
+TAILWIND_APP_NAME = 'scheema_retail_frontend'
 
 TEMPLATES = [
     {
@@ -56,6 +59,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'scheema_retail_store.context_processors.cart_total_items'
             ],
         },
     },
@@ -101,7 +105,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATICFILES_DIRS = [
-    BASE_DIR / 'static'
+    os.path.join(BASE_DIR, 'scheema_retail_frontend', 'static_src'),
+    os.path.join(BASE_DIR, 'scheema_retail_frontend', 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'

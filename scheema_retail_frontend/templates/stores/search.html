@@ -1,0 +1,17 @@
+{% extends '../base.html' %}
+{% block title %}
+    Aliabba Retail | Home
+{% endblock %}
+{% block content %}
+    <h1>Search Results for "{{ query }}"</h1>
+    <ul>
+        {% for product in products %}
+        <li>
+            <a href="{% url 'product_detail' product.slug %}">{{ product.title }}</a>
+            - ${{ product.price }}
+        </li>
+        {% empty %}
+        <p>No products found.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

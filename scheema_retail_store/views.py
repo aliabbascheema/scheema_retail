@@ -11,6 +11,7 @@ from django.shortcuts import redirect
 from django.db.models.signals import post_save
 from django.core.files.storage import default_storage
 
+
 class CustomLoginView(LoginView):
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -45,34 +46,33 @@ class CustomLoginView(LoginView):
         return response
 
 
-def register(request):
+def register(request):  # sourcery skip: extract-method
     if request.user.is_authenticated:
         return redirect('dashboard')
     if request.method == 'POST':
-        return _register_actions(request)
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        user = User.objects.create_user(
+            username=username, email=email, password=password)
+        login(request, user)
+        return redirect('home')
     return render(request, 'stores/register.html')
 
-
-def _register_actions(request):
-    username = request.POST['username']
-    email = request.POST['email']
-    password = request.POST['password']
-    user = User.objects.create_user(
-        username=username, email=email, password=password)
-    login(request, user)
-    return redirect('home')
 
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
-        
+
     instance.profile.save()
-    
+
+
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     if hasattr(instance, 'profile'):
         instance.profile.save()
+
 
 def update_profile(request):
     if not request.user.is_authenticated:
@@ -88,7 +88,7 @@ def _update_profile_actions(request, profile):
     last_name = request.POST.get('last_name', '').strip()
     email = request.POST.get('email', '').strip()
     description = request.POST.get('description', '').strip()
-    job_title = request.POST.get('job_title', '').strip()
+    job_name = request.POST.get('job_name', '').strip()
     social_links = {
         'linkedin': request.POST.get('linkedin', '').strip(),
         'twitter': request.POST.get('twitter', '').strip(),
@@ -98,7 +98,8 @@ def _update_profile_actions(request, profile):
     profile_image = request.FILES.get('profile_image')
     if profile_image:
         if profile.profile_image:
-            default_storage.delete(profile.profile_image.path)  # Delete old image
+            default_storage.delete(
+                profile.profile_image.path)  # Delete old image
         profile.profile_image = profile_image
 
     user = request.user
@@ -114,7 +115,7 @@ def _update_profile_actions(request, profile):
 
     user.save()
     profile.description = description
-    profile.job_title = job_title
+    profile.job_name = job_name
     profile.social_links = social_links
     profile.save()
 
@@ -134,11 +135,18 @@ def product_detail(request, slug):
     total_reviews = reviews.count()
     average_rating = 0
     if total_reviews > 0:
-        average_rating = sum([review.rating for review in reviews]) / total_reviews
+        average_rating = sum(
+            [review.rating for review in reviews]) / total_reviews
 
-    features = [feature.strip()
-                for feature in product.features.split('\n') if feature.strip()]
-
+    features = []
+    for feature in product.features.split(','):
+        feature = feature.strip()
+        if feature:
+            feature = feature.replace('{', '').replace('}', '').replace("'", '').replace('-', 'N/A').strip()
+            parts = feature.split(':', 1)
+            if len(parts) == 2:
+                key, value = parts
+                features.append(f"{key.strip()} {value.strip()}")
     total_qty_in_cart = 0
 
     if request.user.is_authenticated:
@@ -184,7 +192,7 @@ def add_to_cart(request, product_id):
             cart_item.quantity = 1
         cart_item.save()
 
-        messages.success(request, f'{product.title} added to cart')
+        messages.success(request, f'{product.name} added to cart')
 
     else:
         cart = request.session.get('cart', {})
@@ -192,11 +200,11 @@ def add_to_cart(request, product_id):
         if str(product_id) in cart:
             cart[str(product_id)]['quantity'] += 1
         else:
-            cart[str(product_id)] = {'quantity': 1, 'title': product.title}
+            cart[str(product_id)] = {'quantity': 1, 'name': product.name}
 
         request.session['cart'] = cart
 
-        messages.success(request, f'{product.title} added to cart (session)')
+        messages.success(request, f'{product.name} added to cart (session)')
     referer = request.META.get('HTTP_REFERER', '')
     if referer and f'/product/{product.slug}/' in referer:
         return redirect(f'/product/{product.slug}/')
@@ -216,11 +224,11 @@ def remove_from_cart(request, cart_id):
                 cart_item.quantity -= 1
                 cart_item.save()
                 messages.success(
-                    request, f'{cart_item.product.title} quantity decreased by 1.')
+                    request, f'{cart_item.product.name} quantity decreased by 1.')
             else:
                 cart_item.delete()
                 messages.success(
-                    request, f'{cart_item.product.title} removed from cart.')
+                    request, f'{cart_item.product.name} removed from cart.')
         else:
             messages.error(request, 'Item not found in cart.')
 
@@ -228,7 +236,7 @@ def remove_from_cart(request, cart_id):
         cart = request.session.get('cart', {})
 
         if str(cart_id) in cart:
-            product_name = cart[str(cart_id)]["title"]
+            product_name = cart[str(cart_id)]["name"]
 
             if cart[str(cart_id)]['quantity'] > 1:
                 cart[str(cart_id)]['quantity'] -= 1
@@ -254,7 +262,7 @@ def view_cart(request):
                 'product': {
                     'id': item.product.id,
                     'slug': item.product.slug,
-                    'title': item.product.title,
+                    'name': item.product.name,
                     'description': item.product.description,
                     'price': item.product.price,
                     'image': item.product.image,
@@ -273,7 +281,7 @@ def view_cart(request):
                 'product': {
                     'id': Product.objects.get(id=product_id).id,
                     'slug': Product.objects.get(id=product_id).slug,
-                    'title': item['title'],
+                    'name': item['name'],
                     'description': Product.objects.get(id=product_id).description,
                     'price': Product.objects.get(id=product_id).price,
                     'image': Product.objects.get(id=product_id).image,
@@ -309,6 +317,7 @@ def search(request):
     query = request.GET.get('q', '')
     products = Product.objects.filter(name__icontains=query) if query else []
     return render(request, 'stores/search.html', {'products': products, 'query': query})
+
 
 def place_order(request):
     if request.user.is_authenticated:
