@@ -153,6 +153,8 @@ dmypy.json
 # pytype static type analyzer
 .pytype/
 
+*.csv
+
 # Cython debug symbols
 cython_debug/
 

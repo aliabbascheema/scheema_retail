@@ -1,21 +1,8 @@
 {% extends '../base.html' %}
 {% block title %}
-    Sherry Retail | Home
+    Aliabba Retail | Home
 {% endblock %}
 {% block content %}
-    {% comment %} <h2>Your Orders</h2>
-    <ul>
-        {% for order in orders %}
-        <li>
-            Order ID: {{ order.id }} - Total: ${{ order.total_price }} - Date: {{ order.created_at }}
-            <ul>
-                {% for item in order.items.all %}
-                <li>{{ item.product.title }} x {{ item.quantity }} = ${{ item.price }}</li>
-                {% endfor %}
-            </ul>
-        </li>
-        {% endfor %}
-    </ul> {% endcomment %}
     <section class="py-24 relative">
         <div class="w-full max-w-7xl mx-auto px-4 md:px-8">
             <h2 class="font-manrope font-extrabold text-3xl lead-10 text-black mb-9">Order History</h2>
@@ -26,15 +13,6 @@
                             <p class="font-medium text-lg leading-8 text-black whitespace-nowrap">Order : #{{ order.id }}</p>
                             <p class="font-medium text-lg leading-8 text-black mt-3 whitespace-nowrap">Order Created at : {{ order.created_at }}</p>
                         </div>
-                        {% comment %} <div class="flex items-center gap-3 max-md:mt-5">
-                            <button
-                                class="rounded-full px-7 py-3 bg-white text-gray-900 border border-gray-300 font-semibold text-sm shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-200 hover:bg-gray-50 hover:border-gray-400">Show
-                                Invoice</button>
-                            <button
-                                class="rounded-full px-7 py-3 bg-indigo-600 shadow-sm shadow-transparent text-white font-semibold text-sm transition-all duration-500 hover:shadow-indigo-400 hover:bg-indigo-700">Buy
-                                Now</button>
-
-                        </div> {% endcomment %}
                     </div>
                     {% for item in order.items.all %}
                         <svg class="my-9 w-full" xmlns="http://www.w3.org/2000/svg" width="1216" height="2" viewBox="0 0 1216 2"
@@ -44,12 +22,12 @@
                         <div class="flex max-lg:flex-col items-center gap-8 lg:gap-24 px-3 md:px-11">
                             <div class="grid grid-cols-4 w-full">
                                 <div class="col-span-4 sm:col-span-1">
-                                    <img src="{{ item.image }}" alt="{{ item.product.title }}" style="max-width: 35%"class="max-sm:mx-auto object-cover">
+                                    <img src="{{ item.image }}" alt="{{ item.product.name }}" style="max-width: 35%"class="max-sm:mx-auto object-cover">
                                 </div>
                                 <div
                                     class="col-span-4 sm:col-span-3 max-sm:mt-4 sm:pl-8 flex flex-col justify-center max-sm:items-center">
                                     <h6 class="font-manrope font-semibold text-2xl leading-9 text-black mb-3 whitespace-nowrap">
-                                        {{ item.product.title }}</h6>
+                                        {{ item.product.name }}</h6>
                                         <p class="font-normal text-lg leading-8 text-gray-500 whitespace-wrap">
                                             {{ item.product.description }}</p>
                                     <div class="flex items-center max-sm:flex-col gap-x-10 gap-y-3 justify-between">

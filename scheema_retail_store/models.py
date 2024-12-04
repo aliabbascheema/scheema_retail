@@ -57,9 +57,10 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     stock = models.PositiveIntegerField(default=0)
     features = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to='products/')
     reviews = models.ManyToManyField(
         'Review', blank=True, related_name='products')
-    images_urls = models.JSONField(default=list)
+    images = models.JSONField(default=list)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -68,23 +69,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class ProductImage(models.Model):
-    """
-    ProductImage represents an image associated with a specific product. It allows for the storage of multiple images for each product, facilitating better visual representation.
-
-    Attributes:
-        product (Product): The product to which the image belongs.
-        image (ImageField): The image file uploaded for the product.
-
-    Methods:
-        __str__(): Returns a string representation of the product image, typically the product's name or identifier.
-    """
-
-    product = models.ForeignKey(
-        Product, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='products/')
 
 
 class Review(models.Model):

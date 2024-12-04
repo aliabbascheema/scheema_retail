@@ -106,42 +106,12 @@
 
         <!-- Logo -->
         <div class="ml-4 flex lg:ml-0">
-          <a href="{% url 'home' %}" aria-label="Go home" title="Sherrywahla" class="inline-flex items-center">
-            <svg class="w-8 text-deep-purple-accent-400" viewBox="0 0 24 24" stroke-linejoin="round" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" stroke="currentColor" fill="none">
-              <rect x="3" y="1" width="7" height="12"></rect>
-              <rect x="3" y="17" width="7" height="6"></rect>
-              <rect x="14" y="1" width="7" height="6"></rect>
-              <rect x="14" y="11" width="7" height="12"></rect>
-            </svg>
-            <span class="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">Sherry</span>
+          <a href="{% url 'home' %}" aria-label="Go home" title="Aliabba" class="inline-flex items-center w-full">
+            <img class="mx-auto h-16 w-auto" src="{% static 'logos/logo.png' %}" alt="Aliabba Retail"/>
           </a>
         </div>
-        <div class="ml-auto flex items-center">
-          {% if user.is_authenticated %}
-            <div
-              class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6"
-            >
-              <span class="h-6 w-px bg-gray-200" aria-hidden="true"></span>
-            </div>
-          {% else %}
-            <div
-              class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6"
-            >
-              <a
-                href="{% url 'login' %}"
-                id="closeMenuButton"
-                class="text-sm font-medium text-primary-700 hover:text-primary-800"
-                >Login</a
-              >
-              <span class="h-6 w-px bg-primary-200" aria-hidden="true"></span>
-              <a
-                href="{% url 'register' %}"
-                id="closeMenuButton"
-                class="text-sm font-medium text-primary-700 hover:text-primary-800"
-                >Register</a
-              >
-            </div>
-          {% endif %}
+        
+        <div class="ml-auto flex items-center gap-4">
           <!-- Cart -->
           <div class="ml-4 flow-root lg:ml-6">
             <a
@@ -149,7 +119,7 @@
               class="group -m-2 flex items-center p-2"
             >
               <svg
-                class="size-6 shrink-0 text-primary-300 group-hover:text-primary-500"
+                class="size-6 shrink-0 text-gray-300 group-hover:text-gray-500"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
@@ -163,12 +133,38 @@
                 />
               </svg>
               <span
-                class="ml-2 text-sm font-medium text-gray-700 group-hover:text-primary-800"
+                class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"
                 >{{ total_items_in_cart }}</span
               >
               <span class="sr-only">items in cart, view bag</span>
             </a>
           </div>
+          <span class="h-6 w-px bg-gray-200" aria-hidden="true"></span>
+          {% if user.is_authenticated %}
+            <div
+              class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6"
+            >
+              <span class="h-6 w-px bg-gray-200" aria-hidden="true"></span>
+            </div>
+          {% else %}
+            <div
+              class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6"
+            >
+              <a
+                href="{% url 'login' %}"
+                id="closeMenuButton"
+                class="text-sm font-medium text-gray-700 hover:text-gray-800"
+                >Login</a
+              >
+              <span class="h-6 w-px bg-gray-200" aria-hidden="true"></span>
+              <a
+                href="{% url 'register' %}"
+                id="closeMenuButton"
+                class="text-sm font-medium text-gray-700 hover:text-gray-800"
+                >Register</a
+              >
+            </div>
+          {% endif %}
           <!-- User -->
           {% if user.is_authenticated %}
             <div class="flex lg:ml-6">

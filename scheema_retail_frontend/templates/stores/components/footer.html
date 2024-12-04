@@ -7,34 +7,16 @@
       <a
         href="{% url 'home' %}"
         aria-label="Go home"
-        title="Sherry"
+        title="Aliabba"
         class="inline-flex items-center"
       >
-        <svg
-          class="w-8 text-deep-purple-accent-400"
-          viewBox="0 0 24 24"
-          stroke-linejoin="round"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-miterlimit="10"
-          stroke="currentColor"
-          fill="none"
-        >
-          <rect x="3" y="1" width="7" height="12"></rect>
-          <rect x="3" y="17" width="7" height="6"></rect>
-          <rect x="14" y="1" width="7" height="6"></rect>
-          <rect x="14" y="11" width="7" height="12"></rect>
-        </svg>
-        <span
-          class="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase"
-          >Sherry</span
-        >
+        <img class="mx-auto h-17 w-auto" src="{% static 'logos/logo.png' %}" alt="Aliabba Retail"/>
       </a>
-      <div class="mt-6 lg:max-w-sm">
+      {% comment %} <div class="mt-6 lg:max-w-sm">
         <p class="text-sm text-gray-800">
           <strong>Shop with Confidence, Enjoy with Peace of Mind!</strong> Whether it’s quality products, secure payments, or prompt delivery, we’re committed to providing an exceptional shopping experience every time you visit.
         </p>
-      </div>
+      </div> {% endcomment %}
     </div>
     <div>
       <span class="text-base font-bold tracking-wide text-gray-900"
@@ -91,7 +73,7 @@
     class="flex flex-col-reverse justify-between pt-5 pb-10 border-t lg:flex-row"
   >
     <p class="text-sm text-gray-600">
-      © Copyright <span id="year"></span> Sherry Inc. All rights reserved.
+      © Copyright <span id="year"></span> Aliabba Inc. All rights reserved.
     </p>
     <ul
       class="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row"

@@ -1,6 +1,6 @@
 {% extends '../base.html' %}
 {% load static %}
-{% block title %} Sherry Retail | Home {% endblock %}
+{% block title %} Aliabba Retail | Home {% endblock %}
 <style>
   .line-clamp {
     display: -webkit-box;
@@ -38,10 +38,42 @@
           <div class="content-center justify-self-start md:col-span-7 md:text-start">
             <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:max-w-2xl md:text-5xl xl:text-6xl">Limited Time Offer!<br />Up to 50% OFF!</h1>
             <p class="mb-4 max-w-2xl text-gray-500 md:mb-12 md:text-lg mb-3 lg:mb-5 lg:text-xl">Don't Wait - Limited Stock at Unbeatable Prices!</p>
-            <a href="#" class="inline-block rounded-lg bg-primary-400 px-6 py-3.5 text-center font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300">Shop Now</a>
+            <a href="{% url 'register' %}" class="inline-block rounded-lg bg-primary-400 px-6 py-3.5 text-center font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300">Shop Now</a>
           </div>
           <div class="hidden md:col-span-5 md:mt-0 md:flex">
-            <img src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/girl-shopping-list.svg" alt="shopping illustration" />
+            <div id="default-carousel" class="relative w-full" data-carousel="slide">
+              <!-- Carousel wrapper -->
+              <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                  <!-- Item 1 -->
+                  <div class="active duration-700 ease-in-out" data-carousel-item>
+                      <img src="https://plus.unsplash.com/premium_photo-1664201890375-f8fa405cdb7d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                  </div>
+                  <!-- Item 2 -->
+                  <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                      <img src="https://plus.unsplash.com/premium_photo-1683746792467-c6ae33d06c20?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                  </div>
+                  <!-- Item 3 -->
+                  <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                      <img src="https://media.istockphoto.com/id/1424168753/photo/concept-for-online-shopping-and-e-commerce-using-a-laptop-computer-and-a-delivery-vehicle-to.webp?s=1024x1024&w=is&k=20&c=ypev8OMj7FObJs7gSxv-K2doWa1jsraCGqhWJRfyb1E=" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                  </div>
+                  <!-- Item 4 -->
+                  <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                      <img src="https://plus.unsplash.com/premium_photo-1683288295814-84a199da83d9?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                  </div>
+                  <!-- Item 5 -->
+                  <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                      <img src="https://media.istockphoto.com/id/1347626309/photo/latina-female-using-desktop-computer-with-clothing-online-web-store-to-choose-and-buy-clothes.webp?a=1&b=1&s=612x612&w=0&k=20&c=W-C9PTxZzGLGeiHBi553GY1A5oumuCNGq3yK1ICvLsY=" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                  </div>
+              </div>
+              <!-- Slider indicators -->
+              <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+                  <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+                  <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+                  <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+                  <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
+                  <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
+              </div>
+            </div>
           </div>
         </div>
         <div class="mx-auto grid max-w-screen-xl grid-cols-2 gap-8 text-gray-500 sm:grid-cols-3 sm:gap-12 lg:grid-cols-6 px-4">
@@ -127,10 +159,6 @@
         </div>
       </section>
       <div class="mx-auto max-w-2xl px-4 py-6 sm:px-3 sm:py-3 lg:max-w-7xl lg:px-8" id="shop">
-        {% comment %} <h2 class="text-2xl font-bold tracking-tight text-gray-900">
-          Sherry Products
-        </h2> {% endcomment %}
-
         <div
           class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
         >
@@ -148,7 +176,7 @@
               data-price="{{ product.price }}"
             >
               <img
-                src="{{ product.image }}"
+                src="{{ product.image.url }}"
                 alt="Product"
                 class="h-80 w-72 object-cover rounded-t-xl"
               />
@@ -162,11 +190,11 @@
                     class="open-modal"
                     data-id="{{ product.id }}"
                     data-title="{{ product.name }}"
-                    data-image="{{ product.image }}"
+                    data-image="{{ product.image.url }}"
                     data-description="{{ product.description }}"
                     data-price="{{ product.price }}"
                   >
-                    {{ product.title }}
+                    {{ product.name }}
                   </a>
                 </p>
                 <div class="flex items-center">
@@ -222,7 +250,7 @@
     </section>
     <div class="w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8">
       <h5 class="mb-2 text-3xl font-bold text-gray-900">Shop fast from anywhere</h5>
-      <p class="mb-5 text-base text-gray-500 sm:text-lg">Stay up to date and shop happily with Scheema Retail on iOS & Android. Download the app today.</p>
+      <p class="mb-5 text-base text-gray-500 sm:text-lg">Stay up to date and shop happily with Aliabba Retail on iOS & Android. Download the app today.</p>
       <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4 rtl:space-x-reverse">
           <a href="#" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 ">
               <svg class="me-3 w-7 h-7" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="apple" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path></svg>
@@ -304,14 +332,14 @@
                 <p id="modal-description" class="text-sm text-gray-500">
                   <span id="truncated-text"></span>
                   <span id="full-text" class="hidden"></span>
-                  <button id="toggle-description" class="text-blue-500 underline">Read More</button>
+                  <button id="toggle-description" class="text-primary-500 underline">Read More</button>
                 </p>
               </section>
 
               <a
                 href="#"
                 id="modal-add-to-cart"
-                class="mt-6 flex w-full items-center justify-center rounded-md bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                class="mt-6 flex w-full items-center justify-center rounded-md bg-primary-600 px-8 py-3 text-base font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
               >
                 Add to cart
               </a>
@@ -371,7 +399,45 @@
       button.addEventListener("click", () => {
         document.getElementById("product-modal").classList.add("hidden");
       });
-    });    
+    });
+      document.addEventListener('DOMContentLoaded', function () {
+        const items = document.querySelectorAll('[data-carousel-item]');
+        const indicators = document.querySelectorAll('[data-carousel-slide-to]');
+        let activeIndex = 0;
+    
+        function updateCarousel() {
+          items.forEach((item, index) => {
+            item.classList.toggle('active', index === activeIndex);
+            item.classList.toggle('hidden', index !== activeIndex);
+          });
+    
+          indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('bg-primary-600', index === activeIndex);
+            indicator.classList.toggle('bg-white', index !== activeIndex);
+          });
+        }
+    
+        function nextItem() {
+          activeIndex = (activeIndex + 1) % items.length;
+          updateCarousel();
+        }
+    
+        function prevItem() {
+          activeIndex = (activeIndex - 1 + items.length) % items.length; // This ensures looping to the last item
+          updateCarousel();
+        }
+    
+        indicators.forEach((indicator, index) => {
+          indicator.addEventListener('click', function () {
+            activeIndex = index;
+            updateCarousel();
+          });
+        });
+    
+        setInterval(nextItem, 3000);
+    
+        updateCarousel();
+      });
   </script>
 
 {% endblock %}
