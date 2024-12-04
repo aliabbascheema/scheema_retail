@@ -1,0 +1,64 @@
+{% extends '../base.html' %}
+{% block title %} Aliabba Retail | Login {%endblock%}
+{% block content %}
+  <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 w-full">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <h2
+        class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900"
+      >
+        Welcome back ✌️
+      </h2>
+    </div>
+
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form class="max-w-md mx-auto min-w-sm" method="POST">
+        {% csrf_token %}
+        <div class="relative z-0 w-full mb-5 group">
+          <label
+            for="username"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Username</label
+          >
+          <input
+            type="text"
+            name="username"
+            id="username"
+            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="John"
+            required=""
+          />
+        </div>
+        <div class="relative z-0 w-full mb-5 group">
+          <label
+            for="password"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Password</label
+          >
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="*********"
+            required=""
+          />
+        </div>
+        <button
+          type="submit"
+          class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+        >
+          Submit
+        </button>
+      </form>
+      <p class="mt-10 text-center text-sm/6 text-gray-500">
+        Not a member?
+        <a
+          href="{% url 'register' %}"
+          class="font-semibold text-primary-dark-600 hover:text-primary"
+          >Create account</a
+        >
+      </p>
+    </div>
+  </div>
+
+{% endblock %}
