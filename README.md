@@ -8,7 +8,6 @@ The application includes key e-commerce functionalities such as user authenticat
 
 ![Screenshot 2024-12-04 at 18-05-42 Aliabba Retail](https://github.com/user-attachments/assets/ab292074-4659-4f44-86df-c05fbf74e955)
 
-
 ## Objectives
 
 1. Replace the monolithic architecture with a modular Django MVT framework.
@@ -69,6 +68,7 @@ scheema_retail/
 ### Breakdown of Key Directories and Files:
 
 1. **`scheema_retail/`**: This is the main Django project folder that contains:
+
    - **`settings.py`**: Configuration settings for the Django project.
    - **`urls.py`**: URL routing for the entire project.
    - **`templates/`**: HTML templates rendered by Django views.
@@ -76,6 +76,7 @@ scheema_retail/
    - **`scheema_retail_store/`**: The main app for handling product management, cart functionality, and order processing.
 
 2. **`scheema_retail_frontend/`**: Contains frontend-related configurations and files.
+
    - **`tailwind.config.js`**: Tailwind CSS configuration file to manage styling.
    - **`package.json`**: For managing JavaScript dependencies if required (like custom scripts).
 
@@ -87,15 +88,16 @@ scheema_retail/
 
 6. **`README.md`**: Documentation file that describes the project, setup, and usage instructions.
 
-
 ## Key Features
 
 ### Authentication Views
+
 - **CustomLoginView():** Extends Django's default login view to include cart migration for authenticated users.
 - **register():** Handles user registration.
 - **update_profile():** Allows users to update their profile information.
 
 ### Product and Cart Management
+
 - **home():** Displays all available products.
 - **product_detail():** Shows detailed information about a specific product.
 - **category_products():** Lists products within a specific category.
@@ -104,10 +106,12 @@ scheema_retail/
 - **view_cart():** Displays the current cart contents and dynamically calculates the total cost.
 
 ### Order Processing
+
 - **place_order():** Processes orders based on cart items.
 - **dashboard():** Provides users with a view of their order history.
 
 ### Additional Features
+
 - **Session-based Cart:** Allows guest users to add products to a cart without logging in.
 - **Cart Migration:** Transfers cart items seamlessly upon user login.
 - **Profile Management:** Users can create and manage their profiles.
@@ -117,47 +121,58 @@ scheema_retail/
 ## Project Architecture
 
 ### 1. Frontend:
-   - **Tailwind CSS:** Modern and responsive design.
-   - **Django Templates:** For rendering dynamic content.
+
+- **Tailwind CSS:** Modern and responsive design.
+- **Django Templates:** For rendering dynamic content.
 
 ### 2. Backend:
-   - **Django MVT Framework:** Modular architecture for improved scalability.
-   - **SQLite Database:** Lightweight and easy to manage for the PoC.
+
+- **Django MVT Framework:** Modular architecture for improved scalability.
+- **SQLite Database:** Lightweight and easy to manage for the PoC.
 
 ### 3. DevOps Workflow:
-   - **Continuous Integration:** Automated testing and code integration with GitHub Actions.
-   - **Continuous Deployment:** Seamless updates via Render.
-   - **Monitoring and Logging:** Leverages Render’s built-in tools for real-time insights.
+
+- **Continuous Integration:** Automated testing and code integration with GitHub Actions.
+- **Continuous Deployment:** Seamless updates via Render.
+- **Monitoring and Logging:** Leverages Render’s built-in tools for real-time insights.
 
 ## Workflow & models overview
+
 ### Models Overview
+
 ![Screenshot 2024-12-03 at 23-52-12 ](https://github.com/user-attachments/assets/8ee5ba85-3a32-440d-bc0e-4825d8fd536a)
 
 ### Workflow Structure
-![Screenshot 2024-12-03 at 23-51-21 ](https://github.com/user-attachments/assets/8686a1f0-6155-4482-959a-565f6133dee1)
 
+![Screenshot 2024-12-03 at 23-51-21 ](https://github.com/user-attachments/assets/8686a1f0-6155-4482-959a-565f6133dee1)
 
 ## Installation Guide
 
 ### Prerequisites
+
 - Python 3.8+
 - Node.js (for Tailwind CSS)
 - Docker (optional for local containerized development)
 
 ### Steps to Set Up Locally
+
 1. **Clone the Repository:**
+
    ```bash
    git clone https://github.com/aliabbascheema/scheema_retail.git
    cd scheema_retail
    ```
 
 2. **Backend Setup:**
+
    - Install dependencies:
      ```bash
      pip install -r requirements.txt
      ```
    - Apply migrations:
      ```bash
+     python3 manage.py makemigrations
+     python3 manage.py makemigrations scheema_retail_store
      python3 manage.py migrate
      ```
    - Run the server:
@@ -166,6 +181,7 @@ scheema_retail/
      ```
 
 3. **Frontend Setup:**
+
    - Install Tailwind dependencies:
      ```bash
      python3 manage.py tailwind install
