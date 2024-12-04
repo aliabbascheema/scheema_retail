@@ -43,7 +43,7 @@ RUN python manage.py collectstatic
 
 EXPOSE 8000
 
-ENV DJANGO_SETTINGS_MODULE=e_commerce.settings
+ENV DJANGO_SETTINGS_MODULE=scheema_retail.settings
 ENV PYTHONUNBUFFERED=1
 
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "scheema_retail.wsgi:application"]
